@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface ProductJpaRepository extends JpaRepository<Product, Integer> {
+public interface ProductDao extends JpaRepository<Product, Integer> {
 
     @Modifying
     @Transactional

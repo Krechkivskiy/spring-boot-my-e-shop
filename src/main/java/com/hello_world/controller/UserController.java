@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    private BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
     public UserController(UserService userService, BCryptPasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
@@ -60,7 +59,7 @@ public class UserController {
     @PostMapping("/admin/edit")
     String saveNewUserData(@ModelAttribute("user") User user, Model model) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.edit(user,user.getId());
+        userService.edit(user, user.getId());
         model.addAttribute("userDatabase", userService.getAllUsers());
         return "page_to_save";
     }

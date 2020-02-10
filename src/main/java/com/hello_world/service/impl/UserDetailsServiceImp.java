@@ -18,11 +18,17 @@ import java.util.Optional;
 @Service
 public class UserDetailsServiceImp implements UserDetailsService {
 
-    @Autowired
-    private UserService userService;
+    private  UserService userService;
+    private  BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    BCryptPasswordEncoder passwordEncoder;
+    public UserDetailsServiceImp(UserService userService, BCryptPasswordEncoder passwordEncoder) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public UserDetailsServiceImp() {
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

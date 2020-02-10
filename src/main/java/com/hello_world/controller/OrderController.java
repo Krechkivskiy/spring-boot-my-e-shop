@@ -20,11 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class OrderController {
 
-    private OrderService orderService;
-    private MailService mailService;
-    private CodeService codeService;
+    private final OrderService orderService;
+    private final MailService mailService;
+    private final CodeService codeService;
 
-    @Autowired
     public OrderController(OrderService orderService, MailService mailService, CodeService codeService) {
         this.orderService = orderService;
         this.mailService = mailService;

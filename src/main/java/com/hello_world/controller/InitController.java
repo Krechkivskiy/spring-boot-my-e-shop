@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class InitController {
-    @Autowired
-    private UserService userService;
+
+    private  final UserService userService;
+
+    public InitController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/initial")
     String init() {

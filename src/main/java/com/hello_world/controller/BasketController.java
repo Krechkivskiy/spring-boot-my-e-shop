@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/user")
 public class BasketController {
 
-    private ProductService productService;
-    private BasketService basketService;
+    private final ProductService productService;
+    private final BasketService basketService;
 
-    @Autowired
     public BasketController(ProductService productService, BasketService basketService) {
         this.productService = productService;
         this.basketService = basketService;

@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class CodeController {
 
-    private CodeService codeService;
-    private OrderService orderService;
+    private final CodeService codeService;
+    private final OrderService orderService;
 
-    @Autowired
     public CodeController(CodeService codeService, OrderService orderService) {
         this.codeService = codeService;
         this.orderService = orderService;

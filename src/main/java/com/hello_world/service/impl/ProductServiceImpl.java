@@ -1,7 +1,7 @@
 package com.hello_world.service.impl;
 
 import com.hello_world.entity.Product;
-import com.hello_world.repository.ProductJpaRepository;
+import com.hello_world.repository.ProductDao;
 import com.hello_world.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +11,12 @@ import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-    @Autowired
-    ProductJpaRepository productDao;
+
+    private final ProductDao productDao;
+
+    public ProductServiceImpl(ProductDao productDao) {
+        this.productDao = productDao;
+    }
 
     @Override
     public void addProduct(Product product) {

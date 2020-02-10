@@ -3,20 +3,22 @@ package com.hello_world.service.impl;
 import com.hello_world.entity.Basket;
 import com.hello_world.entity.Product;
 import com.hello_world.entity.User;
-import com.hello_world.repository.BasketJpaRepository;
+import com.hello_world.repository.BasketDao;
 import com.hello_world.service.BasketService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class BasketServiseImpl implements BasketService {
-    @Autowired
-    private BasketJpaRepository basketDao;
+
+    private final BasketDao basketDao;
+
+    public BasketServiseImpl(BasketDao basketDao) {
+        this.basketDao = basketDao;
+    }
 
     @Override
     public void addProduct(User user, Product product) {

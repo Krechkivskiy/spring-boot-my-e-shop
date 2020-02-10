@@ -13,7 +13,6 @@ public interface BasketService {
 
     void addProduct(User user, Product product);
 
-
     long getCountOfElements(User user);
 
     void createBasket(User user);

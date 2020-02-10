@@ -2,7 +2,7 @@ package com.hello_world.service.impl;
 
 
 import com.hello_world.entity.User;
-import com.hello_world.repository.UserJpaRepository;
+import com.hello_world.repository.UserDao;
 import com.hello_world.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,9 @@ import java.util.Optional;
 public class UserServiceImp implements UserService {
 
 
-    private UserJpaRepository userDao;
+    private final UserDao userDao;
 
-    @Autowired
-    public UserServiceImp(UserJpaRepository userDao) {
+    public UserServiceImp(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -38,7 +37,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void edit(User user,Integer id) {
+    public void edit(User user, Integer id) {
         userDao.setUserInfoById(user.getEmail(), user.getPassword(), user.getRole(), id);
     }
 
