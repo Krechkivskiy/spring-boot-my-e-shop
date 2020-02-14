@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,7 +26,7 @@ public class BasketController {
         this.basketService = basketService;
     }
 
-    @GetMapping("/add_to_box")
+    @PostMapping("/add_to_box")
     String addToBox(@RequestParam int id, Model model, @AuthenticationPrincipal User user) {
         Product product = productService.getById(id).get();
         basketService.addProduct(user, product);

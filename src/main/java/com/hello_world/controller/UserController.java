@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -43,20 +40,20 @@ public class UserController {
         return "page_to_save";
     }
 
-    @GetMapping("/admin/remove")
+    @DeleteMapping("/admin/remove")
     String removeUser(@RequestParam("id") int id, Model model) {
         userService.deleteUser(id);
         model.addAttribute("userDatabase", userService.getAllUsers());
         return "page_to_save";
     }
 
-    @GetMapping("/admin/edit")
+    @PutMapping("/admin/edit")
     String editUser(@RequestParam("id") int id, Model model) {
         model.addAttribute("id", id);
         return "page_to_change_user";
     }
 
-    @PostMapping("/admin/edit")
+    @PutMapping("/admin/edit")
     String saveNewUserData(@ModelAttribute("user") User user, Model model) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.edit(user, user.getId());

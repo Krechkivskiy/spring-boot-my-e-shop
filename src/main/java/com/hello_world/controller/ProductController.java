@@ -6,10 +6,7 @@ import com.hello_world.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -40,14 +37,14 @@ public class ProductController {
         return "page_to_change_product";
     }
 
-    @PostMapping("/admin/edit_product")
+    @PutMapping("/admin/edit_product")
     String editProduct(@ModelAttribute("product") Product product, Model model) {
         productService.edit(product);
         model.addAttribute("productDatabase", productService.getAll());
         return "product";
     }
 
-    @GetMapping("/admin/delete_product")
+    @DeleteMapping("/admin/delete_product")
     String deleteProduct(@RequestParam("id") int id, Model model) {
         productService.deleteProduct(id);
         model.addAttribute("productDatabase", productService.getAll());
